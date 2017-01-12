@@ -39,7 +39,7 @@ func initConnection() {
 }
 
 func clusterStat() {
-	res, err := http.Get("search-core-sysnotifs-beta-tsrx3dffhismokydie5vubirdu.eu-west-1.es.amazonaws.com/_cluster/stats?human&pretty")
+	res, err := http.Get("https://search-core-sysnotifs-beta-tsrx3dffhismokydie5vubirdu.eu-west-1.es.amazonaws.com/_cluster/stats?human&pretty")
 	if err != nil {
 		panic(err.Error())
 	}
