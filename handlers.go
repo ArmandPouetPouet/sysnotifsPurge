@@ -27,6 +27,11 @@ type jsonr struct {
 	} `json:"nodes"`
 }
 
+//Index just say hello
+func Index(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, "Welcome to this test service !")
+}
+
 //CheckRatio function : get user information
 func CheckRatio(w http.ResponseWriter, r *http.Request) {
 
