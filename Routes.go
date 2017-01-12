@@ -20,4 +20,10 @@ var routes = Routes{
 		Pattern:     "/CheckRatio",
 		HandlerFunc: CheckRatio,
 	},
+	Route{
+		Name:        "CheckRatio",
+		Method:      "GET",
+		Pattern:     "/",
+		HandlerFunc: Index,
+	},
 }
