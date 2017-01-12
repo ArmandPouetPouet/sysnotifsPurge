@@ -37,7 +37,7 @@ func CheckRatio(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Println("GetUser")
 
-	resp, err := http.Get("https://search-core-sysnotifs-prod-7tlhh72bx4aasz7we2d3cjvybi.eu-west-1.es.amazonaws.com/_cluster/stats")
+	resp, err := http.Get("search-core-sysnotifs-beta-tsrx3dffhismokydie5vubirdu.eu-west-1.es.amazonaws.com/_cluster/stats")
 	if err != nil {
 		// handle error
 		SetResponse(w, http.StatusOK, "error")
@@ -75,7 +75,7 @@ func CheckRatio(w http.ResponseWriter, r *http.Request) {
 
 func searchOldIndex() string {
 
-	resp, err := http.Get("https://search-core-sysnotifs-prod-7tlhh72bx4aasz7we2d3cjvybi.eu-west-1.es.amazonaws.com/_stats")
+	resp, err := http.Get("search-core-sysnotifs-beta-tsrx3dffhismokydie5vubirdu.eu-west-1.es.amazonaws.com/_stats")
 	if err != nil {
 		// handle error
 
@@ -113,7 +113,7 @@ func searchOldIndex() string {
 func purgeIndex(indexName string) {
 
 	fmt.Println("purgeIndex " + indexName)
-	req, err := http.NewRequest("DELETE", "https://search-core-sysnotifs-prod-7tlhh72bx4aasz7we2d3cjvybi.eu-west-1.es.amazonaws.com/"+indexName, nil)
+	req, err := http.NewRequest("DELETE", "search-core-sysnotifs-beta-tsrx3dffhismokydie5vubirdu.eu-west-1.es.amazonaws.com/"+indexName, nil)
 
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
