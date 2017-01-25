@@ -5,6 +5,7 @@ import (
 	helpers "SysnotifsPurge/Helpers"
 	"fmt"
 	"net/http"
+	"strconv"
 )
 
 //Index just say hello
@@ -15,7 +16,8 @@ func Index(w http.ResponseWriter, r *http.Request) {
 //CheckRatio function : get user information
 func CheckRatio(w http.ResponseWriter, r *http.Request) {
 
-	elastic.CleanES()
-	helpers.SetResponse(w, http.StatusOK, "work done")
+	ratio := elastic.CleanES()
+
+	helpers.SetResponse(w, http.StatusOK, "work done, ratio is now "+strconv.Itoa(ratio)+"%")
 
 }

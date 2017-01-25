@@ -8,10 +8,11 @@ import (
 )
 
 //CleanES checks current data load of the cluster, and perform purge if necessary
-func CleanES() {
+func CleanES() int {
 	for getRatio() < threshold {
 		purgeOldestIndex()
 	}
+	return getRatio()
 }
 
 func getRatio() int {
