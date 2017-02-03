@@ -17,7 +17,6 @@ func Index(w http.ResponseWriter, r *http.Request) {
 
 //CheckRatio function : get user information
 func CheckRatio(w http.ResponseWriter, r *http.Request) {
-
 	ratio, err := elastic.CleanES()
 	if err != nil {
 		SetResponse(w, http.StatusInternalServerError, "Failed with error :  "+fmt.Sprint(err))
