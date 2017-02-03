@@ -2,9 +2,12 @@ package Handlers
 
 import (
 	elastic "SysnotifsPurge/Elasticsearch"
-	helpers "SysnotifsPurge/Helpers"
+	"encoding/json"
 	"fmt"
 	"net/http"
+	"strconv"
+
+	"github.com/pkg/errors"
 )
 
 //Index just say hello
@@ -15,7 +18,22 @@ func Index(w http.ResponseWriter, r *http.Request) {
 //CheckRatio function : get user information
 func CheckRatio(w http.ResponseWriter, r *http.Request) {
 
-	elastic.CleanES()
-	helpers.SetResponse(w, http.StatusOK, "work done")
+	ratio, err := elastic.CleanES()
+	if err != nil {
+		SetResponse(w, http.StatusInternalServerError, "Failed with error :  "+fmt.Sprint(err))
+	} else {
+		SetResponse(w, http.StatusOK, "Work done, ratio is now "+strconv.Itoa(ratio)+"%")
+	}
+}
 
+//SetResponse function with json output
+func SetResponse(w http.ResponseWriter, statusCode int, i interface{}) {
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	w.WriteHeader(statusCode)
+
+	if i != nil {
+		if err := json.NewEncoder(w).Encode(i); err != nil {
+			errors.Wrap(err, "Encoding response failed")
+		}
+	}
 }
